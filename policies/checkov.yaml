@@ -1,0 +1,20 @@
+block-http:
+  - "# Ensure root filesystem is readonly" 
+  - "# Ensure no new privileges are used" 
+  - "# Segment runtime and data paths" 
+  - "# Pin approved PHP releases" 
+  - "# Require drift detection and WAF baseline review" 
+
+terraform:
+  - "resource.google_compute_firewall.allow_https_from_lb must have restricted sources"
+  - "resource.google_compute_security_policy.php_waf must be versioned and reviewed"
+
+container:
+  - "container.image cannot run as root"
+  - "no root filesystem writes unless explicitly mounted"
+  - "php runtime must be pinned to supported fixed release"
+
+runtime:
+  - "session.upload_progress.enabled == 0"
+  - "fatal_error_backtraces == 0 when using PHP 8.5"
+  - "php memory_limit must be bounded and not user-overridable"
