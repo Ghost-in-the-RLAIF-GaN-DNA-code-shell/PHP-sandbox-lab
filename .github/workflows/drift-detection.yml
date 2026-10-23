@@ -1,0 +1,49 @@
+name: drift-detection
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  drift-check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Terraform init
+        run: terraform -chdir=terraform init
+
+      - name: Run Terraform Plan & Evaluate Drift
+        id: plan
+        run: |
+          set +e
+          terraform -chdir=terraform plan -detailed-exitcode -out=tfplan
+          EXIT_CODE=$?
+          set -e
+
+          if [ $EXIT_CODE -eq 0 ]; then
+            echo "status=no_drift" >> $GITHUB_OUTPUT
+            echo "No drift detected. Baseline remains compliant."
+          elif [ $EXIT_CODE -eq 2 ]; then
+            echo "status=drift_detected" >> $GITHUB_OUTPUT
+            echo "⚠️ Cloud infrastructure drift detected!"
+            exit 2
+          else
+            echo "status=error" >> $GITHUB_OUTPUT
+            echo "❌ Terraform plan failed with an error."
+            exit 1
+          fi
