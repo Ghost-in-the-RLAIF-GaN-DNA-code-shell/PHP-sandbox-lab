@@ -55,10 +55,9 @@ The official PHP advisories identify the fixed minimum releases as:
 * [GHSA-6wmf-4rv5-p3rp (CVE-2026-109619)](https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp)
 * [PHP Official Advisories](https://www.php.net/archive/2026.php)
 
-Else:
-Some of This repo is supposed to be an Firejail alternative as the practical example because it is easy to document and easy to run in a lab environment.
 
-## Recommended model
+
+## Else: Some of This repo is supposed to be an Firejail alternative as the practical example because it is easy to document and easy to run in a lab environment.Recommended model
 
 - run PHP-FPM or Apache in a constrained user namespace
 - restrict filesystem visibility
