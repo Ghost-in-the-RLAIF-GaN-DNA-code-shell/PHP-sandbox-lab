@@ -1,6 +1,6 @@
 # PHP-sandbox-lab
 This should be proof of concecpt for PHP sandboxing
-all credits go to Gemini of Google, which is not closely that dangerous like the none stop privileges escalation and critical slop of copilot today ! ! !  
+all credits go to Gemini of Google, which is not closely that dangerous like the none stop privileges escalation and critical slop of copilot today ! 🤬 
 # Cloud Drift Mitigation & Exploit Hardening for PHP on GCP
 
 This repository provides a hardened, production-ready reference implementation for running PHP workloads on Google Cloud Platform (GCP). It is specifically engineered to mitigate unauthenticated pre-application remote code execution vulnerabilities (**CVE-2026-109618** and **CVE-2026-109619**), prevent denial-of-service (DoS) and privilege escalation, and continuously enforce infrastructure compliance against **cloud drift**.
