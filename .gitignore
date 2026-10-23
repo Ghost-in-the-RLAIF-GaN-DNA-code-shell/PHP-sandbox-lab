@@ -1,21 +1,80 @@
-# the composer package lock file and install directory
-# Commit your application's lock file http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file
-# You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
-# /composer.lock
-/fuel/vendor
+# --- Environment and secrets ---
+.env
+.env.*
+!.env.example
+!.env.test.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+*.secret
+*.tfstate
+*.tfstate.*
+.terraform/
 
-# the fuelphp document
-/docs/
+# --- PHP dependencies ---
+/vendor/
+/composer.phar
+composer.lock.tmp
 
-# you may install these packages with `oil package`.
-# http://fuelphp.com/docs/packages/oil/package.html
-# /fuel/packages/auth/
-# /fuel/packages/email/
-# /fuel/packages/oil/
-# /fuel/packages/orm/
-# /fuel/packages/parser/
+# --- Local configuration ---
+/.phpunit.cache/
+/.php-cs-fixer.cache
+.phpactor.json
+phpstan.neon
+phpstan.neon.dist.local
 
-# dynamically generated files
-/fuel/app/logs/*/*/*
-/fuel/app/cache/*/*
-/fuel/app/config/crypt.php
+# --- Logs and runtime data ---
+*.log
+/logs/
+/tmp/
+/var/cache/
+/var/log/
+/var/run/
+*.pid
+*.sock
+*.core
+core
+
+# --- Test artifacts and coverage ---
+/coverage/
+/build/
+/artifacts/
+/test-results/
+/reports/
+*.prof
+*.gcda
+*.gcno
+
+# --- Local containers and overrides ---
+docker-compose.override.yml
+compose.override.yaml
+compose.override.yml
+.env.docker
+
+# --- Local development environments ---
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# --- Python tooling, if used for security tests ---
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# --- Generated infrastructure artifacts ---
+cdk.out/
+.terragrunt-cache/
+
+# --- Local vulnerability-test data ---
+/local-test-data/
+/private-fixtures/
+/crash-dumps/
